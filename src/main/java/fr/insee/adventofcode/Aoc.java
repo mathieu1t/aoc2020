@@ -51,8 +51,8 @@ public class Aoc {
 		
 //		// Day 07
 		Day<?> day07 = new Day07();
-//		String result07_1 = day07.part1("src/main/resources/07.txt", null);
-//		System.out.println("Résultat jour 7 partie 1: " + result07_1);
+		String result07_1 = day07.part1("src/main/resources/07.txt", null);
+		System.out.println("Résultat jour 7 partie 1: " + result07_1);
 		String result07_2 = day07.part2("src/main/resources/07.txt", null);
 		System.out.println("Résultat jour 7 partie 2: " + result07_2);
 		
