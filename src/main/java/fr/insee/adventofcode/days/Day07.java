@@ -17,22 +17,22 @@ public class Day07 extends Day<Integer> {
 		List<Integer[]> reglages = reglagesPossibles(0, 4);
 		for (Integer[] i : reglages) {
 			int entree = 0;
-			IntCode intCodeA = new IntCode(puzzle, i[0], entree, 0, 0);
-			entree = intCodeA.lancer();
+			IntCode intCodeA = new IntCode(puzzle, i[0], entree, 0);
+			intCodeA.lancer();
 			puzzle = Arrays.copyOf(sauv, sauv.length);
-			IntCode intCodeB = new IntCode(puzzle, i[1], entree, 0, 0);
-			entree = intCodeB.lancer();
+			IntCode intCodeB = new IntCode(puzzle, i[1], intCodeA.getOutput(), 0);
+			intCodeB.lancer();
 			puzzle = Arrays.copyOf(sauv, sauv.length);
-			IntCode intCodeC = new IntCode(puzzle, i[2], entree, 0, 0);
-			entree = intCodeC.lancer();
+			IntCode intCodeC = new IntCode(puzzle, i[2], intCodeB.getOutput(), 0);
+			intCodeC.lancer();
 			puzzle = Arrays.copyOf(sauv, sauv.length);
-			IntCode intCodeD = new IntCode(puzzle, i[3], entree, 0, 0);
-			entree = intCodeD.lancer();
+			IntCode intCodeD = new IntCode(puzzle, i[3], intCodeC.getOutput(), 0);
+			intCodeD.lancer();
 			puzzle = Arrays.copyOf(sauv, sauv.length);
-			IntCode intCodeE = new IntCode(puzzle, i[4], entree, 0, 0);
-			entree = intCodeE.lancer();
+			IntCode intCodeE = new IntCode(puzzle, i[4], intCodeD.getOutput(), 0);
+			intCodeE.lancer();
 			puzzle = Arrays.copyOf(sauv, sauv.length);
-			signals.add(entree);
+			signals.add(intCodeE.getOutput());
 		}
 
 		int retour = signals.stream().mapToInt(x -> x).max().orElse(0);
@@ -41,39 +41,50 @@ public class Day07 extends Day<Integer> {
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath, ",");
+		//puzzle = Utils.getTabEntier(filepath, ",");
+	    	puzzle = new Integer[]{3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5};
 		List<Integer> signals = new ArrayList<>();
 		List<Integer[]> reglages = reglagesPossibles(5, 9);
-		for (Integer[] i : reglages) {
+		//for (Integer[] i : reglages) {
+		Integer[] i = new Integer[] {9,8,7,6,5};
 			Integer[] initialPuzzle = Arrays.copyOf(puzzle, puzzle.length);
-			int entree = 0;
-			IntCode intCodeA = new IntCode(initialPuzzle, i[0], entree, 0, 0);
-			int sortieA = intCodeA.lancer();
-			IntCode intCodeB = new IntCode(initialPuzzle, i[1], sortieA, intCodeA.getPosition(), intCodeA.getSortie());
-			int sortieB = intCodeB.lancer();
-			IntCode intCodeC = new IntCode(initialPuzzle, i[2], sortieB, intCodeB.getPosition(), intCodeB.getSortie());
-			int sortieC = intCodeC.lancer();
-			IntCode intCodeD = new IntCode(initialPuzzle, i[3], sortieC, intCodeC.getPosition(), intCodeC.getSortie());
-			int sortieD = intCodeD.lancer();
-			IntCode intCodeE = new IntCode(initialPuzzle, i[4], sortieD, intCodeD.getPosition(), intCodeD.getSortie());
-			int sortieE = intCodeE.lancer();
-			while (!intCodeE.isStop()) {
-				intCodeA = new IntCode(initialPuzzle, null, sortieE, intCodeE.getPosition(), intCodeE.getSortie());
-				sortieA = intCodeA.lancer();
-				intCodeB = new IntCode(initialPuzzle, null, sortieA, intCodeA.getPosition(), intCodeA.getSortie());
-				sortieB = intCodeB.lancer();
-				intCodeC = new IntCode(initialPuzzle, null, sortieB, intCodeB.getPosition(), intCodeB.getSortie());
-				sortieC = intCodeC.lancer();
-				intCodeD = new IntCode(initialPuzzle, null, sortieC, intCodeC.getPosition(), intCodeC.getSortie());
-				sortieD = intCodeD.lancer();
-				intCodeE = new IntCode(initialPuzzle, null, sortieD, intCodeD.getPosition(), intCodeD.getSortie());
-				sortieE = intCodeE.lancer();
+			IntCode intCodeA = new IntCode(initialPuzzle, i[0], 0, 0);
+			intCodeA.lancer();
+			System.out.println(intCodeA.getOutput() + " " + intCodeA.getPosition());
+			IntCode intCodeB = new IntCode(intCodeA.getTab(), i[1], intCodeA.getOutput(), 0);
+			intCodeB.lancer();
+			System.out.println(intCodeB.getOutput() + " " + intCodeB.getPosition());
+			IntCode intCodeC = new IntCode(intCodeB.getTab(), i[2], intCodeB.getOutput(), 0);
+			intCodeC.lancer();
+			System.out.println(intCodeC.getOutput() + " " + intCodeC.getPosition());
+			IntCode intCodeD = new IntCode(intCodeC.getTab(), i[3], intCodeC.getOutput(), 0);
+			intCodeD.lancer();
+			System.out.println(intCodeD.getOutput() + " " + intCodeC.getPosition());
+			IntCode intCodeE = new IntCode(intCodeD.getTab(), i[4], intCodeD.getOutput(), 0);
+			intCodeE.lancer();
+			System.out.println(intCodeE.getOutput() + " " + intCodeE.getPosition());
+			while (intCodeE.getHasOutput()) {
+				intCodeA.setEntree1(intCodeE.getOutput());
+				intCodeA.lancer();
+				System.out.println(intCodeA.getOutput() + " " + intCodeA.getPosition());
+				intCodeB.setEntree1(intCodeA.getOutput());
+				intCodeB.lancer();
+				System.out.println(intCodeB.getOutput() + " " + intCodeB.getPosition());
+				intCodeC.setEntree1(intCodeB.getOutput());
+				intCodeC.lancer();
+				System.out.println(intCodeC.getOutput() + " " + intCodeC.getPosition());
+				intCodeD.setEntree1(intCodeD.getOutput());
+				intCodeD.lancer();
+				System.out.println(intCodeD.getOutput() + " " + intCodeD.getPosition());
+				intCodeE.setEntree1(intCodeD.getOutput());
+				intCodeE.lancer();
+				System.out.println(intCodeE.getOutput() + " " + intCodeE.getPosition());
 			}
-			signals.add(intCodeE.getSortie());
-		}
+			signals.add(intCodeD.getOutput());
+		//}
 
-		int retour = signals.stream().mapToInt(x -> x).max().orElse(0);
-		return String.valueOf(retour);
+		//int retour = signals.stream().mapToInt(x -> x).max().orElse(0);
+		return String.valueOf(0);
 	}
 
 	private List<Integer[]> reglagesPossibles(int debut, int fin) {

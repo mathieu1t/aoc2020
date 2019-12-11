@@ -2,33 +2,18 @@ package fr.insee.adventofcode.model;
 
 public class IntCode {
 
-	private boolean stop = false;
+	private Integer output;
 	private Integer[] tab;
 	private Integer entree1 = 0;
 	private Integer entree2 = 0;
-	private Integer sortie;
+	private Boolean hasOutput = false;
 	private Integer position;
-	
-	/**
-	 * @return the sortie
-	 */
-	public Integer getSortie() {
-		return sortie;
-	}
 
-	/**
-	 * @param sortie the sortie to set
-	 */
-	public void setSortie(Integer sortie) {
-		this.sortie = sortie;
-	}
-
-	public IntCode(Integer[] tab, Integer entree1, Integer entree2, int position, int sortie) {
+	public IntCode(Integer[] tab, Integer entree1, Integer entree2, int position) {
 		this.tab = tab;
 		this.entree1 = entree1;
 		this.entree2 = entree2;
 		this.position = position;
-		this.sortie = sortie;
 	}
 
 	public String getOpcode(String s) {
@@ -55,10 +40,10 @@ public class IntCode {
 		}
 	}
 
-	public int lancer() {
+	public void lancer() {
 		String opcode = getOpcode(String.valueOf(tab[position]));
 		boolean changeInput = false;
-		while (!"99".equals(opcode)) {
+		while (!"99".equals(opcode) && !hasOutput) {
 			Integer[] modes = getModes(String.valueOf(tab[position]));
 			switch (opcode) {
 			case "01":
@@ -79,9 +64,10 @@ public class IntCode {
 				position = position + 2;
 				break;
 			case "04":
-				sortie = val(1, modes); // output
+				output = val(1, modes); // output
+				hasOutput = true;
 				position = position + 2;
-				return sortie;
+				break;
 			case "05":
 				if (val(1, modes) != 0) {
 					tab[position] = val(2, modes);
@@ -109,8 +95,6 @@ public class IntCode {
 			}
 			opcode = getOpcode(String.valueOf(tab[position]));
 		}
-		setStop(true);
-		return sortie;
 	}
 
 	public int val(int numParam, Integer[] modes) {
@@ -132,14 +116,6 @@ public class IntCode {
 		this.tab = tab;
 	}
 
-	public boolean isStop() {
-		return stop;
-	}
-
-	public void setStop(boolean stop) {
-		this.stop = stop;
-	}
-
 	/**
 	 * @return the position
 	 */
@@ -152,6 +128,48 @@ public class IntCode {
 	 */
 	public void setPosition(Integer position) {
 		this.position = position;
+	}
+
+	/**
+	 * @return the output
+	 */
+	public Integer getOutput() {
+	    return output;
+	}
+
+	/**
+	 * @param output the output to set
+	 */
+	public void setOutput(Integer output) {
+	    this.output = output;
+	}
+
+	/**
+	 * @return the hasOutput
+	 */
+	public Boolean getHasOutput() {
+	    return hasOutput;
+	}
+
+	/**
+	 * @param hasOutput the hasOutput to set
+	 */
+	public void setHasOutput(Boolean hasOutput) {
+	    this.hasOutput = hasOutput;
+	}
+
+	/**
+	 * @return the entree1
+	 */
+	public Integer getEntree1() {
+	    return entree1;
+	}
+
+	/**
+	 * @param entree1 the entree1 to set
+	 */
+	public void setEntree1(Integer entree1) {
+	    this.entree1 = entree1;
 	}
 
 }
