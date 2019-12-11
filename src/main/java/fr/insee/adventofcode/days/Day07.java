@@ -64,19 +64,19 @@ public class Day07 extends Day<Integer> {
 			intCodeE.lancer();
 			System.out.println(intCodeE.getOutput() + " " + intCodeE.getPosition());
 			while (intCodeE.getHasOutput()) {
-				intCodeA.setEntree1(intCodeE.getOutput());
+				intCodeA.setEntree2(intCodeE.getOutput());
 				intCodeA.lancer();
 				System.out.println(intCodeA.getOutput() + " " + intCodeA.getPosition());
-				intCodeB.setEntree1(intCodeA.getOutput());
+				intCodeB.setEntree2(intCodeA.getOutput());
 				intCodeB.lancer();
 				System.out.println(intCodeB.getOutput() + " " + intCodeB.getPosition());
-				intCodeC.setEntree1(intCodeB.getOutput());
+				intCodeC.setEntree2(intCodeB.getOutput());
 				intCodeC.lancer();
 				System.out.println(intCodeC.getOutput() + " " + intCodeC.getPosition());
-				intCodeD.setEntree1(intCodeD.getOutput());
+				intCodeD.setEntree2(intCodeD.getOutput());
 				intCodeD.lancer();
 				System.out.println(intCodeD.getOutput() + " " + intCodeD.getPosition());
-				intCodeE.setEntree1(intCodeD.getOutput());
+				intCodeE.setEntree2(intCodeD.getOutput());
 				intCodeE.lancer();
 				System.out.println(intCodeE.getOutput() + " " + intCodeE.getPosition());
 			}

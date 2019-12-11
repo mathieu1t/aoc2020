@@ -43,6 +43,7 @@ public class IntCode {
 	public void lancer() {
 		String opcode = getOpcode(String.valueOf(tab[position]));
 		boolean changeInput = false;
+		hasOutput = false;
 		while (!"99".equals(opcode) && !hasOutput) {
 			Integer[] modes = getModes(String.valueOf(tab[position]));
 			switch (opcode) {
@@ -159,17 +160,17 @@ public class IntCode {
 	}
 
 	/**
-	 * @return the entree1
+	 * @return the entree2
 	 */
-	public Integer getEntree1() {
-	    return entree1;
+	public Integer getEntree2() {
+	    return entree2;
 	}
 
 	/**
-	 * @param entree1 the entree1 to set
+	 * @param entree1 the entree2 to set
 	 */
-	public void setEntree1(Integer entree1) {
-	    this.entree1 = entree1;
+	public void setEntree2(Integer entree2) {
+	    this.entree2 = entree2;
 	}
 
 }
