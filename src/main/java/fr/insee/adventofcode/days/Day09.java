@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Day07 extends Day<Integer> {
+public class Day09 extends Day<Integer> {
 
     @Override
     public String part1(String filepath, Object... params) {
