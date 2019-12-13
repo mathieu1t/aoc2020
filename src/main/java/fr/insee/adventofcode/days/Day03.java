@@ -10,11 +10,11 @@ import fr.insee.adventofcode.model.Ligne;
 import fr.insee.adventofcode.model.Point;
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day03 extends Day<String> {
+public class Day03 extends Day {
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getTab(filepath)[0];
+	    String[] puzzle = Utils.getTab(filepath)[0];
 		Fil fil1 = new Fil(puzzle);
 		puzzle = Utils.getTab(filepath)[1];
 		Fil fil2 = new Fil(puzzle);
@@ -25,7 +25,7 @@ public class Day03 extends Day<String> {
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getTab(filepath)[0];
+	    String[] puzzle = Utils.getTab(filepath)[0];
 		Fil fil1 = new Fil(puzzle);
 		puzzle = Utils.getTab(filepath)[1];
 		Fil fil2 = new Fil(puzzle);

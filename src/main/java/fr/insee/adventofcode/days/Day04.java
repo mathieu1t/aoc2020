@@ -6,11 +6,11 @@ import java.util.stream.IntStream;
 
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day04 extends Day<Integer> {
+public class Day04 extends Day {
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath, "-");
+	    Integer[] puzzle = Utils.getTabEntier(filepath, "-");
 		int de = puzzle[0];
 		int a = puzzle[1];
 		long nb = IntStream.range(de, a).mapToObj(i -> transformNumber(i)).filter(m -> regle(m)).count();
@@ -19,7 +19,7 @@ public class Day04 extends Day<Integer> {
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath, "-");
+	    Integer[] puzzle = Utils.getTabEntier(filepath, "-");
 		int de = puzzle[0];
 		int a = puzzle[1];
 		long nb = IntStream.range(de, a).mapToObj(i -> transformNumber(i)).filter(m -> regle2(m)).count();

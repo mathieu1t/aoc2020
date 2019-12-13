@@ -4,37 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Day07 extends Day<Integer> {
-
-    @Override
-    public String part1(String filepath, Object... params) {
-	// puzzle = Utils.getTabEntier(filepath, ",");
-	// Integer[] sauv = Arrays.copyOf(puzzle, puzzle.length);
-	// List<Integer> signals = new ArrayList<>();
-	// List<Integer[]> reglages = reglagesPossibles(0, 4);
-	// for (Integer[] i : reglages) {
-	// int entree = 0;
-	// IntCode intCodeA = new IntCode(puzzle, i[0], entree, 0);
-	// intCodeA.lancer();
-	// puzzle = Arrays.copyOf(sauv, sauv.length);
-	// IntCode intCodeB = new IntCode(puzzle, i[1], intCodeA.getOutput(), 0);
-	// intCodeB.lancer();
-	// puzzle = Arrays.copyOf(sauv, sauv.length);
-	// IntCode intCodeC = new IntCode(puzzle, i[2], intCodeB.getOutput(), 0);
-	// intCodeC.lancer();
-	// puzzle = Arrays.copyOf(sauv, sauv.length);
-	// IntCode intCodeD = new IntCode(puzzle, i[3], intCodeC.getOutput(), 0);
-	// intCodeD.lancer();
-	// puzzle = Arrays.copyOf(sauv, sauv.length);
-	// IntCode intCodeE = new IntCode(puzzle, i[4], intCodeD.getOutput(), 0);
-	// intCodeE.lancer();
-	// puzzle = Arrays.copyOf(sauv, sauv.length);
-	// signals.add(intCodeE.getOutput());
-	// }
-	//
-	// int retour = signals.stream().mapToInt(x -> x).max().orElse(0);
-	return String.valueOf(0);
-    }
+public class Day07 extends Day {
 
     static final int[] puzzle = new int[] { 3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 38, 47, 64, 85, 106, 187, 268, 349, 430, 99999, 3, 9, 1002, 9, 4, 9, 1001, 9, 4, 9, 1002, 9, 4, 9, 4, 9, 99, 3, 9,
 	    1002, 9, 4, 9, 4, 9, 99, 3, 9, 1001, 9, 3, 9, 102, 5, 9, 9, 1001, 9, 5, 9, 4, 9, 99, 3, 9, 101, 3, 9, 9, 102, 5, 9, 9, 1001, 9, 4, 9, 102, 4, 9, 9, 4, 9, 99, 3, 9, 1002, 9, 3, 9, 101, 2,
@@ -46,14 +16,38 @@ public class Day07 extends Day<Integer> {
 	    1001, 9, 1, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 99, 3, 9,
 	    1002, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9,
 	    1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 99 };
+    
+    @Override
+    public String part1(String filepath, Object... params) {
+	List<Integer> signals = new ArrayList<>();
+	List<Integer[]> reglages = reglagesPossibles(0, 4);
+	for (Integer[] phase : reglages) {
+	    ArrayList<IntCode> progs = getNewPrograms(phase);
+	    int prevResult = 0;
+		for (IntCode prog : progs) {
+		    prog.addInput(prevResult);
+		    prevResult = prog.run();
+		    if (prevResult == -1) {
+			break;
+		    }
+		}
+		if (prevResult != -1) {
+		    signals.add(prevResult);
+		}
+
+	}
+
+	int retour = signals.stream().mapToInt(x -> x).max().orElse(0);
+	return String.valueOf(retour);
+    }
+
+    
 
     @Override
     public String part2(String filepath, Object... params) {
-	// puzzle = Utils.getTabEntier(filepath, ",");
 
 	List<Integer> signals = new ArrayList<>();
 	List<Integer[]> reglages = reglagesPossibles(5, 9);
-	int max = Integer.MIN_VALUE;
 	for (Integer[] phase : reglages) {
 	    ArrayList<IntCode> progs = getNewPrograms(phase);
 	    int prevResult = 0;

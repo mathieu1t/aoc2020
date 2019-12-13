@@ -2,18 +2,18 @@ package fr.insee.adventofcode.days;
 
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day05 extends Day<Integer> {
+public class Day05 extends Day{
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath, ",");
+	    Integer[]  puzzle = Utils.getTabEntier(filepath, ",");
 		int retour = intCode(puzzle, (int) params[0]);
 		return String.valueOf(retour);
 	}
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath, ",");
+	    Integer[] puzzle = Utils.getTabEntier(filepath, ",");
 		int retour = intCode(puzzle, (int) params[0]);
 		return String.valueOf(retour);
 	}

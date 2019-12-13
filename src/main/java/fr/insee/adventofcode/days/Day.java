@@ -1,8 +1,6 @@
 package fr.insee.adventofcode.days;
 
-public abstract class Day<T> {
-	
-	protected T puzzle[];
+public abstract class Day {
 	
 	public abstract String part1(String filepath, Object... params);
 	

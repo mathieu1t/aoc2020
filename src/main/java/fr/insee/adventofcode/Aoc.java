@@ -1,8 +1,7 @@
 package fr.insee.adventofcode;
 
 import fr.insee.adventofcode.days.Day;
-import fr.insee.adventofcode.days.Day07;
-import fr.insee.adventofcode.days.Day08;
+import fr.insee.adventofcode.days.Day10;
 
 public class Aoc {
 
@@ -50,11 +49,11 @@ public class Aoc {
 //		System.out.println("Résultat jour 6 partie 2: " + result06_2);
 		
 //		// Day 07
-		Day<?> day07 = new Day07();
+//		Day<?> day07 = new Day07();
 //		String result07_1 = day07.part1("src/main/resources/07.txt", null);
 //		System.out.println("Résultat jour 7 partie 1: " + result07_1);
-		String result07_2 = day07.part2("src/main/resources/07.txt", null);
-		System.out.println("Résultat jour 7 partie 2: " + result07_2);
+//		String result07_2 = day07.part2("src/main/resources/07.txt", null);
+//		System.out.println("Résultat jour 7 partie 2: " + result07_2);
 		
 //		// Day 08
 //		Day<?> day08 = new Day08();
@@ -62,6 +61,22 @@ public class Aoc {
 //		System.out.println("Résultat jour 8 partie 1: " + result08_1);
 //		String result08_2 = day08.part2("src/main/resources/08.txt", null);
 //		System.out.println("Résultat jour 8 partie 2: " + result08_2);
+	    
+////		// Day 09
+//		Day day09 = new Day09();
+//		String result09_1 = day09.part1("src/main/resources/09.txt", null);
+//		System.out.println("Résultat jour 9 partie 1: " + result09_1);
+//		String result09_2 = day09.part2("src/main/resources/09.txt", null);
+//		System.out.println("Résultat jour 9 partie 2: " + result09_2);
+	    
+//		// Day 10
+		Day day10 = new Day10();
+		String result10_1 = day10.part1("src/main/resources/10.txt", null);
+		System.out.println("Résultat jour 10 partie 1: " + result10_1);
+		String result10_2 = day10.part2("src/main/resources/10.txt", null);
+		System.out.println("Résultat jour 10 partie 2: " + result10_2);
+	    
+	    	
 
 	}
 

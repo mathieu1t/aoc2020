@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import fr.insee.adventofcode.model.Orbite;
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day06 extends Day<String> {
+public class Day06 extends Day {
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getLignesTab(filepath);
+	    String[] puzzle = Utils.getLignesTab(filepath);
 		List<Orbite> orbites = Arrays.stream(puzzle).map(x -> x.split("\\)")).map(y -> new Orbite(y[1],y[0])).collect(Collectors.toList());
 		for (Orbite orb : orbites) {
 			orb.setPrecedent(orbites.stream().filter(o -> o.getAxe().equals(orb.getObjet())).findFirst().orElse(Orbite.COM));
@@ -23,7 +23,7 @@ public class Day06 extends Day<String> {
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getLignesTab(filepath);
+		String[] puzzle = Utils.getLignesTab(filepath);
 		List<Orbite> orbites = Arrays.stream(puzzle).map(x -> x.split("\\)")).map(y -> new Orbite(y[1],y[0])).collect(Collectors.toList());
 		for (Orbite orb : orbites) {
 			orb.setPrecedent(orbites.stream().filter(o -> o.getAxe().equals(orb.getObjet())).findFirst().orElse(Orbite.COM));

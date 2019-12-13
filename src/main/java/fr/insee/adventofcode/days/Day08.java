@@ -8,11 +8,11 @@ import fr.insee.adventofcode.model.Image;
 import fr.insee.adventofcode.model.Layer;
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day08 extends Day<Integer> {
+public class Day08 extends Day {
 
     @Override
     public String part1(String filepath, Object... params) {
-	puzzle = Utils.getTabEntier(filepath, "");
+	Integer[] puzzle = Utils.getTabEntier(filepath, "");
 	Image image = new Image();
 	List<Layer> layers = new ArrayList<>();
 	for (int i = 0; i < puzzle.length; i += 25 * 6) {
@@ -39,7 +39,7 @@ public class Day08 extends Day<Integer> {
 
     @Override
     public String part2(String filepath, Object... params) {
-	puzzle = Utils.getTabEntier(filepath, "");
+	Integer[] puzzle = Utils.getTabEntier(filepath, "");
 	Image image = new Image();
 	List<Layer> layers = new ArrayList<>();
 	for (int i = 0; i < puzzle.length; i += 25 * 6) {

@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day01 extends Day<Integer> {
+public class Day01 extends Day {
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getLignesEntier(filepath);
+		Integer[] puzzle = Utils.getLignesEntier(filepath);
 		int carburant = Arrays.stream(puzzle).map((masse) -> calculBesoinCarburant(masse)).reduce(0, Integer::sum);
 		return String.valueOf(carburant);
 	}
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getLignesEntier(filepath);
+	    	Integer[]  puzzle = Utils.getLignesEntier(filepath);
 		int carburant = Arrays.stream(puzzle).map((masse) -> calculBesoinTotalCarburant(masse)).reduce(0, Integer::sum);
 		return String.valueOf(carburant);
 	}

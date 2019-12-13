@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 import fr.insee.adventofcode.utils.Utils;
 
-public class Day02 extends Day<Integer> {
+public class Day02 extends Day {
 
 	@Override
 	public String part1(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath,",");
+	    Integer[] puzzle = Utils.getTabEntier(filepath,",");
 		Integer[] puzzleAModifie = Arrays.copyOf(puzzle, puzzle.length);
 		puzzleAModifie[1] = (int) params[0];
 		puzzleAModifie[2] = (int) params[1];
@@ -18,7 +18,7 @@ public class Day02 extends Day<Integer> {
 
 	@Override
 	public String part2(String filepath, Object... params) {
-		puzzle = Utils.getTabEntier(filepath,",");
+	    Integer[] puzzle = Utils.getTabEntier(filepath,",");
 		for(int x = 0; x < 100; x++) {
             for(int y = 0; y < 100; y++) {
             	Integer[] puzzleAModifie = Arrays.copyOf(puzzle, puzzle.length);
