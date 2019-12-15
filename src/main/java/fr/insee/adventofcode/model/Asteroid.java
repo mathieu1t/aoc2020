@@ -22,9 +22,6 @@ public class Asteroid {
 	this.y = y;
     }
     
-    
-    
-    
     /**
      * @return the x
      */
