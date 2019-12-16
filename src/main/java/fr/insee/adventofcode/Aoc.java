@@ -1,7 +1,7 @@
 package fr.insee.adventofcode;
 
 import fr.insee.adventofcode.days.Day;
-import fr.insee.adventofcode.days.Day12;
+import fr.insee.adventofcode.days.Day14;
 
 public class Aoc {
 
@@ -84,11 +84,18 @@ public class Aoc {
 //		System.out.println("Résultat jour 11 partie 2: " + result11_2);
 
 //		// Day 12
-		Day day12 = new Day12();
-//		String result12_1 = day12.part1("src/main/resources/12.txt", null);
-//		System.out.println("Résultat jour 12 partie 1: " + result12_1);
-		String result12_2 = day12.part2("src/main/resources/12.txt", null);
-		System.out.println("Résultat jour 12 partie 2: " + result12_2);
+//		Day day12 = new Day12();
+////		String result12_1 = day12.part1("src/main/resources/12.txt", null);
+////		System.out.println("Résultat jour 12 partie 1: " + result12_1);
+//		String result12_2 = day12.part2("src/main/resources/12.txt", null);
+//		System.out.println("Résultat jour 12 partie 2: " + result12_2);
+	    
+//		// Day 14
+		Day day14 = new Day14();
+		String result14_1 = day14.part1("src/main/resources/14.txt", null);
+		System.out.println("Résultat jour 14 partie 1: " + result14_1);
+		String result14_2 = day14.part2("src/main/resources/12.txt", null);
+		System.out.println("Résultat jour 14 partie 2: " + result14_2);
 	    	
 
 	}
