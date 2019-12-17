@@ -94,7 +94,7 @@ public class Aoc {
 		Day day14 = new Day14();
 		String result14_1 = day14.part1("src/main/resources/14.txt", null);
 		System.out.println("Résultat jour 14 partie 1: " + result14_1);
-		String result14_2 = day14.part2("src/main/resources/12.txt", null);
+		String result14_2 = day14.part2("src/main/resources/14.txt", null);
 		System.out.println("Résultat jour 14 partie 2: " + result14_2);
 	    	
 
