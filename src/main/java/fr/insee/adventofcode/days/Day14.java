@@ -25,7 +25,7 @@ public class Day14 extends Day {
     }
 
     private long getNbFUEL(Map<String, Reaction> reactions, Map<String, Long> entreesFUEL, long nb) {
-
+	entreesFUEL = entreesFUEL.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(),e -> e.getValue() * nb));
 	while (entreesFUEL.isEmpty() || !entreesFUEL.entrySet().stream().allMatch(x -> "ORE".equals(x.getKey()))) {
 	    List<String> newEntreesFUEL = new ArrayList<>();
 	    newEntreesFUEL.addAll(entreesFUEL.keySet());
@@ -36,7 +36,7 @@ public class Day14 extends Day {
 		    if (r == null) {
 			continue;
 		    }
-		    long quantite = (long) Math.ceil((double) entreesFUEL.get(entry) * nb / r.quantite);
+		    long quantite = (long) Math.ceil((double) entreesFUEL.get(entry) / r.quantite);
 		    for (Entry<String, Long> entry2 : r.entrees.entrySet()) {
 			if (entreesFUEL.containsKey(entry2.getKey())) {
 			    entreesFUEL.put(entry2.getKey(), entreesFUEL.get(entry2.getKey()) + entry2.getValue() * quantite);
@@ -47,9 +47,8 @@ public class Day14 extends Day {
 		    entreesFUEL.remove(entry);
 		    reactions.remove(entry);
 		} else {
-		    entreesFUEL.put(entry, entreesFUEL.get(entry) * nb);
+		    entreesFUEL.put(entry, entreesFUEL.get(entry));
 		}
-		System.out.println(entreesFUEL);
 	    }
 	}
 	return entreesFUEL.get("ORE");
@@ -66,7 +65,7 @@ public class Day14 extends Day {
 
     @Override
     public String part2(String filepath, Object... params) {
-	long fuel = 0;
+	long fuel = 6320000;
 	long ore = 0;
 	while (ore <= 1000000000000l) {
 	    Map<String, Reaction> reactions = new TreeMap<>();
@@ -76,9 +75,9 @@ public class Day14 extends Day {
 	    reactions.remove("FUEL");
 	    Map<String, Long> entreesFUEL = reactionFUEL.entrees;
 	    ore = getNbFUEL(reactions, entreesFUEL, ++fuel);
-	    System.out.println(fuel + " fuel pour " + ore + " ore");
+	    //System.out.println(fuel + " fuel pour " + ore + " ore");
 	}
-	return String.valueOf(fuel);
+	return String.valueOf(fuel-1);
     }
 
     static class Reaction {
