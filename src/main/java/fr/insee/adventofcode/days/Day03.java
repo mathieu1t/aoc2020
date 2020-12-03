@@ -1,65 +1,42 @@
 package fr.insee.adventofcode.days;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-
-import fr.insee.adventofcode.model.Fil;
-import fr.insee.adventofcode.model.Ligne;
-import fr.insee.adventofcode.model.Point;
 import fr.insee.adventofcode.utils.Utils;
 
 public class Day03 extends Day {
 
-	@Override
-	public String part1(String filepath, Object... params) {
-	    String[] puzzle = Utils.getTab(filepath)[0];
-		Fil fil1 = new Fil(puzzle);
-		puzzle = Utils.getTab(filepath)[1];
-		Fil fil2 = new Fil(puzzle);
-		List<Point> communs = getPointsCommuns(fil1,fil2);
-		int min = communs.stream().mapToInt(p -> p.manhattan()).min().orElseThrow(NoSuchElementException::new);
-		return String.valueOf(min);
-	}
+    private static final String[] puzzle = Utils.getLineString("src/main/resources/03.txt");
+    private static final char TREE = '#';
 
-	@Override
-	public String part2(String filepath, Object... params) {
-	    String[] puzzle = Utils.getTab(filepath)[0];
-		Fil fil1 = new Fil(puzzle);
-		puzzle = Utils.getTab(filepath)[1];
-		Fil fil2 = new Fil(puzzle);
-		List<Point> communs = getPointsCommuns(fil1,fil2);
-		int min = communs.stream().mapToInt(p -> distanceTotal(fil1,fil2,p)).min().orElseThrow(NoSuchElementException::new);
-		return String.valueOf(min);
-	}
+    @Override
+    public String part1() {
+        return String.valueOf(slopes(3, 1));
+    }
 
-	private List<Point> getPointsCommuns(Fil fil1, Fil fil2) {
-		List<Point> retour = new ArrayList<>();	
-		fil1.getLignes().stream().map(l -> l.listeDesPoints()).forEach(l1 -> {
-			fil2.getLignes().stream().map(l -> l.listeDesPoints()).forEach(l2 -> {
-				List<Point> communParLigne = l1.stream().filter(l2::contains).filter(p -> !p.equals(Point.centre)).collect(Collectors.toList());
-				retour.addAll(communParLigne);
-			});
-		});
-		return retour;
-	}
-	
-	private int distanceTotal(Fil fil1, Fil fil2, Point p) {
-		return distanceFil(fil1,p) + distanceFil(fil2,p);
-	}
+    @Override
+    public String part2() {
+        long s1 = slopes(1, 1);
+        long s2 = slopes(3, 1);
+        long s3 = slopes(5, 1);
+        long s4 = slopes(7, 1);
+        long s5 = slopes(1, 2);
 
-	private int distanceFil(Fil fil, Point p) {
-		int distance = 0;
-		for (Ligne l : fil.getLignes()) {
-			List<Point> points = l.listeDesPoints();
-			if (points.contains(p)) {
-				return distance + p.distanceEntre(l.getDepart());
-			} else {
-				distance = distance + l.getDistance();
-			}
-		}
-		return 0;
-	}
+        return String.valueOf(s1 * s2 * s3 * s4 * s5);
+    }
+
+    private long slopes(int right, int down) {
+        long trees = 0;
+        int column = 0;
+        int maxLength = puzzle[0].length();
+        for (int row = 0; row < puzzle.length; row += down) {
+            if (puzzle[row].charAt(column) == TREE) {
+                trees ++ ;
+            }
+            column += right;
+            if (column >= maxLength) {
+                column -= maxLength;
+            }
+        }
+        return trees;
+    }
 
 }

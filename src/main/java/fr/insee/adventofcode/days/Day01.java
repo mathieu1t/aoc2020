@@ -6,29 +6,27 @@ import fr.insee.adventofcode.utils.Utils;
 
 public class Day01 extends Day {
 
-	@Override
-	public String part1(String filepath, Object... params) {
-		Integer[] puzzle = Utils.getLignesEntier(filepath);
-		int carburant = Arrays.stream(puzzle).map((masse) -> calculBesoinCarburant(masse)).reduce(0, Integer::sum);
-		return String.valueOf(carburant);
-	}
+    private static final Integer[] puzzle = Utils.getLineInteger("src/main/resources/01.txt");
 
-	@Override
-	public String part2(String filepath, Object... params) {
-	    	Integer[]  puzzle = Utils.getLignesEntier(filepath);
-		int carburant = Arrays.stream(puzzle).map((masse) -> calculBesoinTotalCarburant(masse)).reduce(0, Integer::sum);
-		return String.valueOf(carburant);
-	}
-	
-	private int calculBesoinCarburant(Integer masse) {
-		return masse / 3 - 2;
-	}
-	
-	private int calculBesoinTotalCarburant(Integer masse) {
-		int carburant = calculBesoinCarburant(masse);
-		if(carburant <= 0) return 0;
-		return carburant + calculBesoinTotalCarburant(carburant);
-	}
+    private static final int SUM = 2020;
 
+    @Override
+    public String part1() {
+        long e = Arrays.stream(puzzle).map(p -> SUM - p).filter(p -> Arrays.asList(puzzle).contains(p)).findFirst().orElse(0);
+        return String.valueOf(e * (SUM - e));
+    }
+
+    @Override
+    public String part2() {
+        long result = 0;
+        for (int i : puzzle) {
+            int e = Arrays.stream(puzzle).map(p -> SUM - i - p).filter(p -> Arrays.asList(puzzle).contains(p)).findFirst().orElse(0);
+            if (e != 0) {
+                result = e * (SUM - i - e) * i;
+                break;
+            }
+        }
+        return String.valueOf(result);
+    }
 
 }

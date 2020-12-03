@@ -2,54 +2,24 @@ package fr.insee.adventofcode.days;
 
 import java.util.Arrays;
 
+import fr.insee.adventofcode.model.PasswordPolicy;
+import fr.insee.adventofcode.model.PasswordPolicy.Policy;
 import fr.insee.adventofcode.utils.Utils;
 
 public class Day02 extends Day {
 
-	@Override
-	public String part1(String filepath, Object... params) {
-	    Integer[] puzzle = Utils.getTabEntier(filepath,",");
-		Integer[] puzzleAModifie = Arrays.copyOf(puzzle, puzzle.length);
-		puzzleAModifie[1] = (int) params[0];
-		puzzleAModifie[2] = (int) params[1];
-		int retour = intCode(puzzleAModifie);
-		return String.valueOf(retour);
-	}
+    private static final String[] puzzle = Utils.getLineString("src/main/resources/02.txt");
 
-	@Override
-	public String part2(String filepath, Object... params) {
-	    Integer[] puzzle = Utils.getTabEntier(filepath,",");
-		for(int x = 0; x < 100; x++) {
-            for(int y = 0; y < 100; y++) {
-            	Integer[] puzzleAModifie = Arrays.copyOf(puzzle, puzzle.length);
-            	puzzleAModifie[1] = x;
-        		puzzleAModifie[2] = y;
-        		if (intCode(puzzleAModifie) == (int) params[0]) {
-        			return String.valueOf(100 * x + y);
-        		}
-            }
-		}
-		return null;
-	}
+    @Override
+    public String part1() {
+        long nbGood = Arrays.stream(puzzle).map(p -> new PasswordPolicy(p, Policy.NUMBER_OF_TIMES)).filter(p -> p.isValid()).count();
+        return String.valueOf(nbGood);
+    }
 
-	private int intCode(Integer[] puzzle) {
-		int i = 0;
-		while (i < puzzle.length) {
-			Integer code = puzzle[i];
-			switch (code) {
-			case 1:
-				puzzle[puzzle[i + 3]] = puzzle[puzzle[i + 2]] + puzzle[puzzle[i + 1]];
-				i = i + 4;
-				break;
-			case 2:
-				puzzle[puzzle[i + 3]] = puzzle[puzzle[i + 2]] * puzzle[puzzle[i + 1]];
-				i = i + 4;
-				break;
-			case 99:
-				return puzzle[0];			
-			}
-		}
-		return 0;
-	}
+    @Override
+    public String part2() {
+        long nbGood = Arrays.stream(puzzle).map(p -> new PasswordPolicy(p, Policy.POSITION)).filter(p -> p.isValid()).count();
+        return String.valueOf(nbGood);
+    }
 
 }
