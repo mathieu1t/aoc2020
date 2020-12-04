@@ -25,5 +25,13 @@ public class Utils {
     public static Integer[] getLineInteger(String input) {
         return getLine(input).mapToInt(Integer::parseInt).boxed().toArray(Integer[]::new);
     }
+    
+    public static String[][] getLineString(String input, String separateur) {
+    	return getLine(input).map(ligne -> ligne.split(separateur)).toArray(String[][]::new);
+    }
+    
+    public static Integer[][] getLineInteger(String input, String separateur) {
+    	return getLine(input).map(ligne -> ligne.split(separateur)).toArray(Integer[][]::new);
+    }
 
 }
