@@ -21,30 +21,30 @@ public class Passport {
     
 
     private boolean isValidBirthYear() {
-	final int birthYear = Integer.parseInt(values.get("byr"));
+	int birthYear = Integer.parseInt(values.get("byr"));
 	return birthYear >= 1920 && birthYear <= 2002;
     }
 
     private boolean isValidIssueYear() {
-	final int issueYear = Integer.parseInt(values.get("iyr"));
+	int issueYear = Integer.parseInt(values.get("iyr"));
 	return issueYear >= 2010 && issueYear <= 2020;
     }
 
     private boolean isValidExpirationYear() {
-	final int expirationYear = Integer.parseInt(values.get("eyr"));
+	int expirationYear = Integer.parseInt(values.get("eyr"));
 	return expirationYear >= 2020 && expirationYear <= 2030;
     }
 
     private boolean isValidHeight() {
-	final Pattern pattern = Pattern.compile("(\\d+)(in|cm)");
-	final Matcher matcher = pattern.matcher(values.get("hgt"));
+	Pattern pattern = Pattern.compile("(\\d+)(in|cm)");
+	Matcher matcher = pattern.matcher(values.get("hgt"));
 
 	if (!matcher.find()) {
 	    return false;
 	}
 
-	final int heightValue = Integer.parseInt(matcher.group(1));
-	final String heightUnit = matcher.group(2);
+	int heightValue = Integer.parseInt(matcher.group(1));
+	String heightUnit = matcher.group(2);
 
 	if (heightUnit.equalsIgnoreCase("in")) {
 	    return heightValue >= 59 && heightValue <= 76;

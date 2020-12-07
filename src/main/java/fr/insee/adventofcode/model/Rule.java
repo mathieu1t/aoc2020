@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Rule {
     private static final String NO_OTHER_BAGS = "no other bags";
-    private static final String REGEX_RULES = "([1-9]+) ([a-z ]+) (bags|bag)";
+    private static final String REGEX_RULES = "(\\d+) ([a-z ]+) (bags|bag)";
 
     private String bagColor;
     private Map<String, Long> containsBags = new HashMap<>();

@@ -20,7 +20,6 @@ public class PasswordPolicy {
     private Policy pol;
 
     public PasswordPolicy(String pwdPol, Policy pol) {
-        super();
         Pattern p = Pattern.compile(REGEX);
         Matcher m = p.matcher(pwdPol);
         if (m.matches()) {
