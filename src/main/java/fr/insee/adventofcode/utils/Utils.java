@@ -26,6 +26,10 @@ public class Utils {
         return getLine(input).mapToInt(Integer::parseInt).boxed().toArray(Integer[]::new);
     }
     
+    public static Long[] getLineLong(String input) {
+        return getLine(input).mapToLong(Long::parseLong).boxed().toArray(Long[]::new);
+    }
+    
     public static String[][] getLineString(String input, String separateur) {
     	return getLine(input).map(ligne -> ligne.split(separateur)).toArray(String[][]::new);
     }
