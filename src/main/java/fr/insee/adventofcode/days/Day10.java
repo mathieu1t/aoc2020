@@ -31,7 +31,6 @@ public class Day10 extends Day {
     public String part2() {
 	List<Long> puzzleList = Arrays.asList(puzzle);
 	puzzleList.sort(null);
-        long[] nb = new long[puzzleList.size()];
         Map<Long,Long> nbArrangements = new HashMap<>();
         countArrangement(puzzleList.get(0) , puzzleList, nbArrangements);
         long result = 0;
