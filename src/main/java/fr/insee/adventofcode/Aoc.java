@@ -12,6 +12,7 @@ import fr.insee.adventofcode.days.Day08;
 import fr.insee.adventofcode.days.Day09;
 import fr.insee.adventofcode.days.Day10;
 import fr.insee.adventofcode.days.Day11;
+import fr.insee.adventofcode.days.Day12;
 
 public class Aoc {
 
@@ -59,6 +60,10 @@ public class Aoc {
      // Day 11
         Day day11 = new Day11();
         day11.run();
+        
+     // Day 12
+        Day day12 = new Day12();
+        day12.run();
     }
 
 }
