@@ -1,9 +1,7 @@
 package fr.insee.adventofcode.days;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import fr.insee.adventofcode.utils.Utils;
 

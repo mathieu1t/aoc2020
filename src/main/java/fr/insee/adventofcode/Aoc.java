@@ -1,69 +1,50 @@
 package fr.insee.adventofcode;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import fr.insee.adventofcode.days.Day;
-import fr.insee.adventofcode.days.Day01;
-import fr.insee.adventofcode.days.Day02;
-import fr.insee.adventofcode.days.Day03;
-import fr.insee.adventofcode.days.Day04;
-import fr.insee.adventofcode.days.Day05;
-import fr.insee.adventofcode.days.Day06;
-import fr.insee.adventofcode.days.Day07;
-import fr.insee.adventofcode.days.Day08;
-import fr.insee.adventofcode.days.Day09;
-import fr.insee.adventofcode.days.Day10;
-import fr.insee.adventofcode.days.Day11;
-import fr.insee.adventofcode.days.Day12;
 
 public class Aoc {
 
-    public static void main(String[] args) {
-        // Day 01
-        Day day01 = new Day01();
-        day01.run();
+    private static String[][] tabAoc = new String[25][5];
+    private static String[][] tabAocR = new String[25][5];
 
-        // Day 02
-        Day day02 = new Day02();
-        day02.run();
+    public static void main(String[] args)
+	    throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
-        // Day 03
-        Day day03 = new Day03();
-        day03.run();
-
-        // Day 04
-        Day day04 = new Day04();
-        day04.run();
-
-        // Day 05
-        Day day05 = new Day05();
-        day05.run();
-
-        // Day 06
-        Day day06 = new Day06();
-        day06.run();
-
-        // Day 07
-        Day day07 = new Day07();
-        day07.run();
-        
-        // Day 08
-        Day day08 = new Day08();
-        day08.run();
-        
-     // Day 09
-        Day day09 = new Day09();
-        day09.run();
-        
-     // Day 10
-        Day day10 = new Day10();
-        day10.run();
-        
-     // Day 11
-        Day day11 = new Day11();
-        day11.run();
-        
-     // Day 12
-        Day day12 = new Day12();
-        day12.run();
+	for (int i = 1; i <= 25; i++) {
+	    String d = i < 10 ? "0" + i : i + "";
+	    Day day = (Day) Class.forName("fr.insee.adventofcode.days.Day" + d).newInstance();
+	    day.run();
+	    Day dayR = (Day) Class.forName("fr.insee.adventofcode.days.Day" + d + "Refactor").newInstance();
+	    dayR.run();
+	    tabAoc[i-1][0] = "Day"+d;
+	    tabAoc[i-1][1] = day.getResult1();
+	    tabAoc[i-1][2] = day.getTime1();
+	    tabAoc[i-1][3] = day.getResult2();
+	    tabAoc[i-1][4] = day.getTime2();
+	    tabAocR[i-1][0] = "Day"+d+" Refactor";
+	    tabAocR[i-1][1] = dayR.getResult1();
+	    tabAocR[i-1][2] = dayR.getTime1();
+	    tabAocR[i-1][3] = dayR.getResult2();
+	    tabAocR[i-1][4] = dayR.getTime2();
+	}
+	String[][] data = ArrayUtils.addAll(tabAoc, tabAocR);
+	String[] entete = {"Day","Part 1","Time 1","Part 2","Time 2"};
+	JFrame frame = new JFrame("Advent of code");
+	JTable table = new JTable(data, entete);
+	JScrollPane scroll = new JScrollPane(table);
+        frame.getContentPane().add(scroll,BorderLayout.CENTER);       
+ 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 1000);
+        frame.setVisible(true);
+	
     }
-
 }

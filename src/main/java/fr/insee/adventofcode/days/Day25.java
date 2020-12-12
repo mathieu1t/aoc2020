@@ -1,8 +1,8 @@
 package fr.insee.adventofcode.days;
 
-public class Day05 extends Day {
+public class Day25 extends Day {
 
-//    private static final String[] puzzle = Utils.getLineString("src/main/resources/05.txt");
+    //private static final String[] puzzle = Utils.getLineString("src/main/resources/12.txt");
 
     @Override
     public String part1() {
@@ -12,6 +12,8 @@ public class Day05 extends Day {
 
     @Override
     public String part2() {
+	
 	return String.valueOf("");
     }
+
 }

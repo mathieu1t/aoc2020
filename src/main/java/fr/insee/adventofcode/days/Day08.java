@@ -1,16 +1,10 @@
 package fr.insee.adventofcode.days;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
-import fr.insee.adventofcode.model.Rule;
 import fr.insee.adventofcode.utils.Utils;
 
 public class Day08 extends Day {
