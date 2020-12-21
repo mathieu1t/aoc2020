@@ -18,7 +18,7 @@ public class Aoc {
     public static void main(String[] args)
 	    throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 
-	for (int i = 20; i <= 25; i++) {
+	for (int i = 21; i <= 25; i++) {
 	    String d = i < 10 ? "0" + i : i + "";
 	    Day day = (Day) Class.forName("fr.insee.adventofcode.days.Day" + d).newInstance();
 	    day.run();
